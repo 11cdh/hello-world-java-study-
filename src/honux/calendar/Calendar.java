@@ -10,7 +10,9 @@ public class Calendar {
 		return MAX_DAYS[month - 1];
 	}
 
-	public void PrintSampleCalendar() {
+	public void PrintCalendar(int year , int month) {
+		
+		System.out.printf("  << %4d년 %2d월 >> \n", year, month);
 		System.out.println(" 일 월  화 수  목 금 토");
 		System.out.println("-------------------- ");
 		System.out.println(" 1  2  3  4  5  6  7 ");
@@ -18,35 +20,13 @@ public class Calendar {
 		System.out.println("15 16 17 18 19 20 21 ");
 		System.out.println("22 23 24 25 26 27 28 ");
 
-	}
-
-	public static void main(String[] args) {
-
-		int month;
-		String PROMPT = "cal> ";
-
-		Scanner scanner = new Scanner(System.in);
-		Calendar cal = new Calendar();
-
-		System.out.println("달을 입력하세요.");
+		int maxdays = getMaxDaysOfMonth(month);
 		
-		while(true) {
-			System.out.print(PROMPT);
-			month = scanner.nextInt();
-			if (month == -1)
-			{
-				break;
-			}
-			if (month > 12)
-			{
-				continue; // 실행시 루프의 처음으로 돌아간다.
-			}
-			System.out.printf("%d월은 %d일 까지 있습니다. \n", month, cal.getMaxDaysOfMonth(month));
+		if (maxdays == 30) {
+			System.out.println("29 30");
+		} else if (maxdays == 31) {
+			System.out.println("29 30 31");
 		}
-
-		cal.PrintSampleCalendar();
-
-		scanner.close();
-
 	}
+
 }
