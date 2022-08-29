@@ -26,28 +26,72 @@ public class Calendar {
 		else
 			return false;
 	}
-	public void PrintCalendar(int year , int month) {
-		
-		System.out.printf("  << %4d년 %2d월 >> \n", year, month);
-		System.out.println(" 일 월  화 수  목 금 토");
-		System.out.println("-------------------- ");
-		System.out.println(" 1  2  3  4  5  6  7 ");
-		System.out.println(" 8  9 10 11 12 13 14 ");
-		System.out.println("15 16 17 18 19 20 21 ");
-		System.out.println("22 23 24 25 26 27 28 ");
-
-		int maxdays = getMaxDaysOfMonth(year, month);
-				
-		if (maxdays == 29) {
-			System.out.println("29 ");
-		} 
-		else if (maxdays == 30)
+	public int getWeekDays(String days)
+	{
+		if (days.equals("SU"))
 		{
-			System.out.println("29 30");
+			return 0;
 		}
-		else if (maxdays == 31) {
-			System.out.println("29 30 31");
+		else if (days.equals("MO"))
+		{
+			return 1;
 		}
+		else if (days.equals("TU"))
+		{
+			return 2;
+		}
+		else if (days.equals("WE"))
+		{
+			return 3;
+		}
+		else if (days.equals("TU"))
+		{
+			return 4;
+		}
+		else if (days.equals("FR"))
+		{
+			return 5;
+		}
+		else if (days.equals("SA"))
+		{
+			return 6;
+		}
+		else
+			return 0;
+	
+	}
+	
+	public void PrintCalendar(int year , int month, String weekdays) 
+	{
+		int start;
+		int maxdays = getMaxDaysOfMonth(year, month);
+		System.out.printf("  << %4d년 %2d월 >> \n", year, month);
+		System.out.println(" SU MO TU WE TU FR SA");
+		System.out.println(" -------------------- ");
+		
+		int days = 1;
+		start = getWeekDays(weekdays);
+		maxdays = maxdays + start;
+		
+		for(int i = 1; i <= maxdays; i++)
+		{
+			if(start != 0)
+			{
+				System.out.printf("   ");
+				start = start - 1;
+			}
+			else
+			{
+				System.out.printf("%3d", days);
+				days = days + 1;
+			}
+			
+			if (i % 7 == 0)
+			{
+				System.out.printf("\n");
+			}
+		}
+		System.out.printf("\n");		
 	}
 
 }
